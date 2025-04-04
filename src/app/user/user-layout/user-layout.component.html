@@ -1,0 +1,30 @@
+<div class="bg-gradient-to-b from-purple-800 to-indigo-900 min-h-screen p-4 text-white">
+  <router-outlet></router-outlet>
+
+  <div class="fixed bottom-0 left-0 right-0 bg-black  p-3 flex justify-around">
+    <a routerLink="user/user-dashboard"
+       routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="nav-link">
+      Home
+    </a>
+    <a routerLink="user/user-stake"
+       routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="nav-link">
+      NFTs
+    </a>
+    <a routerLink="user/user-wallet"
+       routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="nav-link">
+      Wallet
+    </a>
+    <a routerLink="user/user-referrals"
+       routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="nav-link">
+      Team
+    </a>
+  </div>
+</div>

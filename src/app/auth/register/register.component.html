@@ -1,0 +1,154 @@
+<div class="bg-gradient-to-b from-purple-800 to-indigo-900 min-h-screen p-4 text-white">
+  <!-- MetaXchange Header -->
+  <div class="text-center mt-6">
+    <h1 class="text-2xl font-bold">Platform</h1>
+    <div class="bg-white bg-opacity-10 rounded-xl p-4 mt-4">
+      <h2 class="text-lg font-semibold">Get the Mobile App</h2>
+      <p class="text-sm text-gray-300">Download our mobile app for the best experience</p>
+      <button class="bg-white text-black px-4 py-2 rounded-full mt-2 flex items-center justify-center mx-auto">
+        <span class="mr-2">📱</span> Download Now
+      </button>
+    </div>
+  </div>
+
+  <!-- Signup Card -->
+  <div v-else class="bg-white bg-opacity-10 rounded-2xl p-6 shadow-md mt-8 mx-auto w-11/12 max-w-md">
+    <h2 class="text-xl font-semibold text-center">Create Account</h2>
+
+    <div>
+      <div
+        class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+        role="alert"
+        *ngIf="successmessage"
+      >
+        <span class="font-medium">Success !</span> {{ successmessage }}
+      </div>
+      <div
+        class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+        *ngIf="message"
+      >
+        <span class="font-medium">Error ! </span> {{ message }}
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <form #registerForm="ngForm" (ngSubmit)="register()">
+        <!-- Username Input -->
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+          <span class="text-gray-300">👤</span>
+          <input
+            [(ngModel)]="username"
+            name="username"
+            minlength="3"
+            pattern="^[a-zA-Z0-9_]*$"
+            #validateusername="ngModel"
+            id="username"
+            type="text"
+            placeholder="User Name"
+            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+          />
+          <div
+            *ngIf="validateusername.invalid && validateusername.touched"
+            class="text-red-500 text-sm"
+          >
+            <small *ngIf="validateusername.errors?.['required']">Username is required.</small>
+            <small *ngIf="validateusername.errors?.['minlength']">Username must be at least 3 characters long.</small>
+            <small *ngIf="validateusername.errors?.['pattern']">Username cannot contain special characters.</small>
+          </div>
+        </div>
+
+        <!-- Email Input -->
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+          <span class="text-gray-300">📧</span>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+            #validateemail="ngModel"
+            placeholder="Email"
+            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+          />
+          <div
+            *ngIf="validateemail.invalid && validateemail.touched"
+            class="text-red-500 text-sm"
+          >
+            <small *ngIf="validateemail.errors?.['required']">Email is required.</small>
+            <small *ngIf="validateemail.errors?.['email']">Please enter a valid email address.</small>
+          </div>
+        </div>
+
+        <!-- Phone Number Input -->
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+          <span class="text-gray-300">📞</span>
+          <input
+            type="text"
+            [(ngModel)]="phonenumber"
+            name="phoneNumber"
+            pattern="^\d{10}$"
+            #validatephone="ngModel"
+            placeholder="Phone Number"
+            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+          />
+          <div
+            *ngIf="validatephone.invalid && validatephone.touched"
+            class="text-red-500 text-sm"
+          >
+            <small *ngIf="validatephone.errors?.['required']">Phone number is required.</small>
+            <small *ngIf="validatephone.errors?.['pattern']">Phone number must be 10 digits.</small>
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+          <span class="text-gray-300">🔒</span>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            minlength="6"
+            #validatepassword="ngModel"
+            placeholder="Password"
+            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+          />
+          <div
+            *ngIf="validatepassword.invalid && validatepassword.touched"
+            class="text-red-500 text-sm"
+          >
+            <small *ngIf="validatepassword.errors?.['required']">Password is required.</small>
+            <small *ngIf="validatepassword.errors?.['minlength']">Password must be at least 6 characters long.</small>
+          </div>
+        </div>
+
+        <!-- Referral Code Input (Optional) -->
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+          <span class="text-gray-300">💼</span>
+          <input
+            type="text"
+            [(ngModel)]="referralCode"
+            name="referralCode"
+            #validatereferral="ngModel"
+            placeholder="Referral Code (Optional)"
+            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+          />
+        </div>
+
+        <!-- Terms and Conditions Checkbox -->
+        <div class="flex items-center text-sm text-gray-300 mb-3">
+          <input type="checkbox" name="termsAccepted" required  class="mr-2">
+          I agree to the <span class="text-white cursor-pointer">Terms and Conditions</span>
+
+        </div>
+
+        <!-- Submit Button -->
+        <button [disabled]="registerForm.invalid" class="bg-blue-600 w-full py-2 rounded-lg mt-4">Sign Up</button>
+      </form>
+
+      <div class="text-center text-sm text-gray-300 mt-4">
+        Already have an account? <a href="/auth/login"><span class="text-white cursor-pointer">Sign In</span></a>
+      </div>
+    </div>
+  </div>
+</div>
