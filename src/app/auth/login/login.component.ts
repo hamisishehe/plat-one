@@ -15,6 +15,7 @@ export class LoginComponent {
 
   isRegistering = false;
   loading: boolean = false;
+  error: string = '';
 
   email: string = '';
   password: string = '';
@@ -81,6 +82,7 @@ export class LoginComponent {
         (error) => {
           this.message = 'Invalid Details';
           this.loading = false;
+          this.error = "Invalid Details";
         }
       );
   }

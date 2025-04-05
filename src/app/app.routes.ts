@@ -17,6 +17,7 @@ import { UserReferralsComponent } from './user/user-referrals/user-referrals.com
 import { UserLevel1Component } from './user/user-level1/user-level1.component';
 import { UserLevel2Component } from './user/user-level2/user-level2.component';
 import { UserLevel3Component } from './user/user-level3/user-level3.component';
+import { AdminSidebarComponent } from './admin/admin-sidebar/admin-sidebar.component';
 
 export const routes: Routes = [
 
@@ -40,13 +41,14 @@ export const routes: Routes = [
   //admin routes
   {path:'', component: AdminLayoutComponent, canActivate:[authGuardGuard] ,
     children:[
-      {path:'admin/dashboard', component:AdminDashboardComponent, canActivate:[authGuardGuard]},
-      {path:'admin/users', component:AdminUsersComponent, canActivate:[authGuardGuard]},
-      {path:'admin/stake', component:AdminStakesComponent, canActivate:[authGuardGuard]},
-      {path:'admin/stakes-withdraw', component:AdminStakesComponent, canActivate:[authGuardGuard]},
-      {path:'admin/referrals-withdraw', component:AdminReferralsWithdrawComponent, canActivate:[authGuardGuard]},
-      {path:'admin/deposits', component:AdminDepositsComponent, canActivate:[authGuardGuard]},
-      {path:'admin/self-deposits', component:AdminSelfDepositsComponent, canActivate:[authGuardGuard]},
+      {path:'admin/admin-dashboard', component:AdminDashboardComponent, canActivate:[authGuardGuard]},
+      {path:'admin/admin-users', component:AdminUsersComponent, canActivate:[authGuardGuard]},
+      {path:'admin/admin-stake', component:AdminStakesComponent, canActivate:[authGuardGuard]},
+      {path:'admin/admin-stakes-withdraw', component:AdminStakesComponent, canActivate:[authGuardGuard]},
+      {path:'admin/admin-referrals-withdraw', component:AdminReferralsWithdrawComponent, canActivate:[authGuardGuard]},
+      {path:'admin/admin-deposits', component:AdminDepositsComponent, canActivate:[authGuardGuard]},
+      {path:'admin/admin-self-deposits', component:AdminSelfDepositsComponent, canActivate:[authGuardGuard]},
+      {path:'', component:AdminSidebarComponent, canActivate:[authGuardGuard]},
   ]},
 
     // Default redirect for empty path

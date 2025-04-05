@@ -48,18 +48,19 @@
             placeholder="User Name"
             class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
           />
-          <div
-            *ngIf="validateusername.invalid && validateusername.touched"
-            class="text-red-500 text-sm"
-          >
-            <small *ngIf="validateusername.errors?.['required']">Username is required.</small>
-            <small *ngIf="validateusername.errors?.['minlength']">Username must be at least 3 characters long.</small>
-            <small *ngIf="validateusername.errors?.['pattern']">Username cannot contain special characters.</small>
-          </div>
+
         </div>
+        <div
+        *ngIf="validateusername.invalid && validateusername.touched"
+        class="text-red-500 text-sm"
+      >
+        <small *ngIf="validateusername.errors?.['required']">Username is required.</small>
+        <small *ngIf="validateusername.errors?.['minlength']">Username must be at least 3 characters long.</small>
+        <small *ngIf="validateusername.errors?.['pattern']">Username cannot contain special characters.</small>
+      </div>
 
         <!-- Email Input -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
           <span class="text-gray-300">📧</span>
           <input
             type="email"
@@ -70,17 +71,19 @@
             placeholder="Email"
             class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
           />
-          <div
+
+        </div>
+
+        <div
             *ngIf="validateemail.invalid && validateemail.touched"
             class="text-red-500 text-sm"
           >
             <small *ngIf="validateemail.errors?.['required']">Email is required.</small>
             <small *ngIf="validateemail.errors?.['email']">Please enter a valid email address.</small>
           </div>
-        </div>
 
         <!-- Phone Number Input -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
           <span class="text-gray-300">📞</span>
           <input
             type="text"
@@ -91,17 +94,19 @@
             placeholder="Phone Number"
             class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
           />
-          <div
+
+        </div>
+
+        <div
             *ngIf="validatephone.invalid && validatephone.touched"
             class="text-red-500 text-sm"
           >
             <small *ngIf="validatephone.errors?.['required']">Phone number is required.</small>
             <small *ngIf="validatephone.errors?.['pattern']">Phone number must be 10 digits.</small>
           </div>
-        </div>
 
         <!-- Password Input -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
           <span class="text-gray-300">🔒</span>
           <input
             type="password"
@@ -113,17 +118,19 @@
             placeholder="Password"
             class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
           />
-          <div
+
+        </div>
+
+        <div
             *ngIf="validatepassword.invalid && validatepassword.touched"
             class="text-red-500 text-sm"
           >
             <small *ngIf="validatepassword.errors?.['required']">Password is required.</small>
             <small *ngIf="validatepassword.errors?.['minlength']">Password must be at least 6 characters long.</small>
           </div>
-        </div>
 
         <!-- Referral Code Input (Optional) -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
           <span class="text-gray-300">💼</span>
           <input
             type="text"
