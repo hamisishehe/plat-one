@@ -34,7 +34,7 @@
   <!-- Overview Section -->
   <button (click)="openSendModal()" class="w-full">
    <div>
-    <div class=" flex flex-row gap-2 bg-orange-400 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
+    <div class=" flex flex-row gap-2 bg-pink-600 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
       <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
       </svg>
@@ -57,6 +57,8 @@
     </div>
   </button>
 
+
+  <button (click)="openWithdraw()">
   <div class=" flex flex-row gap-2 bg-green-600 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
     <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
@@ -64,9 +66,13 @@
 
     <p class="text-lg mr-3">Withdraw</p>
   </div>
+</button>
 
   </div>
 
+
+
+   <!-- recent transaction -->
   <div class="mt-5">
 
     <div class="">
@@ -107,6 +113,29 @@
         <h3 class="text-lg font-semibold">DEPOSIT USDT</h3>
          <div >
             <form (ngSubmit)="deposit()" #depositform="ngForm">
+
+              <div class="mt-4">
+                <label
+                  for="address"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Your Deposit Address</label
+                >
+                <input
+                  [(ngModel)]="address"
+                  #addressInput="ngModel"
+                  type="text"
+                  id="address"
+                  name="address"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+                <!-- Error message for Amount -->
+                <div
+                  *ngIf="addressInput.invalid && amountInput.touched"
+                  class="text-red-600 text-sm mt-1"
+                ></div>
+              </div>
+
 
               <div class="mt-4">
                 <label
@@ -155,6 +184,117 @@
     </div>
 
 
+    <!-- Modal for withdaw -->
+    <div *ngIf="isWithdrawOpen" class="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-50">
+      <div class="bg-blue-950 p-6 rounded-lg shadow-lg w-96 text-white">
+        <h3 class="text-lg font-semibold mb-4">WITHDRAW USDT</h3>
+
+        <div class="bg-white" *ngIf="success_withdraw_message">
+          <h3 class="text-lg font-semibold mb-4 text-green-600 p-4">{{success_withdraw_message}}</h3>
+
+        </div>
+
+        <div class="bg-white" *ngIf="error_withdraw_message">
+          <h3 class="text-lg font-semibold mb-4 text-red-500 p-4">{{error_withdraw_message}}</h3>
+
+        </div>
+
+
+        <form (ngSubmit)="withdraw()" #withdrawForm="ngForm">
+
+          <!-- Select Balance -->
+          <div class="mb-4">
+            <label for="choose_withdraw" class="block mb-2 text-sm font-medium">
+              Choose Balance
+            </label>
+            <select
+              [(ngModel)]="choose_withdraw"
+              #validate_choose_withdraw="ngModel"
+              name="choose_withdraw"
+              id="choose_withdraw"
+              required
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+            >
+              <option value="" disabled selected>Select an option</option>
+              <option value="team">Team Commission</option>
+              <option value="daily">Daily Earning Balance</option>
+            </select>
+            <div
+              *ngIf="validate_choose_withdraw.invalid && validate_choose_withdraw.touched"
+              class="text-red-400 text-sm mt-1"
+            >
+              Please select a balance type.
+            </div>
+          </div>
+
+
+          <div class="mt-4">
+            <label
+              for="address"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Your Withdraw Address</label
+            >
+            <input
+              [(ngModel)]="withdraw_address"
+              #withaddressInput="ngModel"
+              type="text"
+              id="withdraw_address"
+              name="withdraw_address"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              required
+            />
+            <!-- Error message for Amount -->
+            <div
+              *ngIf="withaddressInput.invalid && withaddressInput.touched"
+              class="text-red-600 text-sm mt-1"
+            ></div>
+          </div>
+
+          <!-- Amount Input -->
+          <div class="mb-4">
+            <label for="amount" class="block mb-2 text-sm font-medium">
+              Amount
+            </label>
+            <input
+              [(ngModel)]="withdraw_amount"
+              #validatewithdraw_amount="ngModel"
+              type="number"
+              id="amount"
+              name="amount"
+              placeholder="0.00"
+              min="10"
+              max="10000"
+              required
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+            />
+            <div
+              *ngIf="validatewithdraw_amount.invalid && validatewithdraw_amount.touched"
+              class="text-red-400 text-sm mt-1"
+            >
+              Please enter an amount between 10 and 10000.
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            [disabled]="!withdrawForm.valid"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 w-full rounded-lg transition duration-200 disabled:opacity-50"
+          >
+            Send Request
+          </button>
+        </form>
+
+        <!-- Close Button -->
+        <div class="mt-4 flex justify-end">
+          <button (click)="closeopenWithdraw()" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+ <!-- Modal for swap -->
     <div *ngIf="isSendOpen" class="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-50 rounded-lg">
       <div class="bg-blue-950 p-6 rounded-lg shadow-lg w-96">
         <h3 class="text-lg font-semibold">SEND USDT TO WORK ACCOUNT</h3>
@@ -207,6 +347,9 @@
       </div>
     </div>
 
+
+
+ <!-- Modal for bottom sheet -->
     <div *ngIf="isBottomSheetOpen" class="fixed bottom-0 left-0 right-0 bg-blue-700 shadow-lg p-6 rounded-t-2xl transition-transform transform translate-y-0 h-1/2">
       <h3 class="text-2xl ml-3 font-semibold">Deposit Details</h3>
 
@@ -215,18 +358,20 @@
 
       </div>
 
-      <div class="flex m-2 mt-6">
+      <!-- <div class="flex m-2 mt-6">
         <div class="float-left">
           <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2"/>
           </svg>
 
+          <p class=" text-white p-5">Deposit  {{ amount }} </p>
+
         </div>
 
 
-      </div>
+      </div> -->
 
-      <div>
+      <div class="mt-3">
         <input
         #referralUrlInput
         type="text"
@@ -238,7 +383,7 @@
       />
       <button
         (click)="copyReferralUrl(referralUrlInput.value)"
-        class="ml-2 text-gray-500 hover:text-gray-700"
+        class="ml-2 text-gray-500 hover:text-gray-700 mt-3"
       >
       <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M14 4v3a1 1 0 0 1-1 1h-3m4 10v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2m11-3v10a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V7.87a1 1 0 0 1 .24-.65l2.46-2.87a1 1 0 0 1 .76-.35H18a1 1 0 0 1 1 1Z"/>

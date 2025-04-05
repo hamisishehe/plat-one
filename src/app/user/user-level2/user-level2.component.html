@@ -1,0 +1,30 @@
+
+<div class="mt-5">
+
+  <div class="">
+    <a href="/user/user-referrals">
+      <p class="text-xl font-bold">Back</p>
+    </a>
+  </div>
+
+
+
+  <div *ngFor="let item of refData2[1]">
+
+  <div class="rounded-s-2xl bg-white mt-5 flex flex-row gap-2 h-20 w-full">
+    <svg class="w-6 h-6  text-green-500 dark:text-orange m-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 14-4-4m4 4 4-4"/>
+    </svg>
+
+     <div class="flex flex-col gap-0 mt-3">
+      <p class="text-sm text-black">{{item.username}}</p>
+      <p class="text-md  text-green-700">{{item.email}}</p>
+     </div>
+
+
+
+  </div>
+
+</div>
+
+</div>

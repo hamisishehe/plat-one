@@ -14,6 +14,9 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { UserWalletComponent } from './user/user-wallet/user-wallet.component';
 import { UserStakeComponent } from './user/user-stake/user-stake.component';
 import { UserReferralsComponent } from './user/user-referrals/user-referrals.component';
+import { UserLevel1Component } from './user/user-level1/user-level1.component';
+import { UserLevel2Component } from './user/user-level2/user-level2.component';
+import { UserLevel3Component } from './user/user-level3/user-level3.component';
 
 export const routes: Routes = [
 
@@ -28,6 +31,9 @@ export const routes: Routes = [
       {path:'user/user-wallet', component:UserWalletComponent, canActivate:[authGuardGuard]},
       {path:'user/user-stake', component:UserStakeComponent, canActivate:[authGuardGuard]},
       {path:'user/user-referrals', component:UserReferralsComponent, canActivate:[authGuardGuard]},
+      {path:'user/user-level1', component:UserLevel1Component, canActivate:[authGuardGuard]},
+      {path:'user/user-leve2', component:UserLevel2Component, canActivate:[authGuardGuard]},
+      {path:'user/user-level3', component:UserLevel3Component, canActivate:[authGuardGuard]},
   ]},
 
 

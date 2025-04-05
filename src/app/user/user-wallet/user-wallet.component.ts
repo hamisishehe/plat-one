@@ -15,14 +15,21 @@ export class UserWalletComponent  implements OnInit{
 
   isOpen = false;
   isSendOpen = false;
+  isWithdrawOpen = false;
   isBottomSheetOpen = false;
+  success_withdraw_message:string ='';
+  error_withdraw_message:string ='';
+
 
   amount:string="";
   swap_amount:string="";
-  depositaddress: string = '';
+  address: string = '';
   phonenumber: string = '';
   gateaway: string = '';
   username: string = '';
+  choose_withdraw : string ='';
+  withdraw_amount : string ='';
+  withdraw_address : string ='';
 
   balanceDetails: BalanceDetails | undefined;
   investUsdBalance: InvestUsdBalance | undefined;
@@ -87,7 +94,7 @@ export class UserWalletComponent  implements OnInit{
       amount: this.amount,
       trans_id: "",
       gate_away: this.gateaway,
-      address: this.depositaddress,
+      address: this.address,
       phonenumber: this.phonenumber,
       username: this.username,
     };
@@ -117,6 +124,7 @@ export class UserWalletComponent  implements OnInit{
 
 
    }
+
 
 
    sendToWork(){
@@ -204,6 +212,99 @@ export class UserWalletComponent  implements OnInit{
       );
   }
 
+
+  getRandomInt(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
+
+  withdraw() {
+    let randomNumber = this.getRandomInt(10000000, 99999999);
+
+    if (this.userData?.id == null) {
+      window.location.href = '/user/user-dashboard';
+    }
+
+
+    if (this.choose_withdraw === "daily") {
+      const FormData = {
+        userId: this.userData?.id,
+        amount: this.withdraw_amount,
+        transactionId: "",
+        phonenumber: this.phonenumber,
+        wallet: this.address,
+        withdrawmethod: this.gateaway,
+      };
+
+      this.http
+        .post(`${environment.baseUrl}/withdraw/create`, FormData, {
+          responseType: 'text',
+        }) // Use baseUrl here
+        .subscribe(
+          (response) => {
+            if (response == 'Profit record not found.') {
+
+              this.error_withdraw_message = response;
+
+            } else if (response == 'Insufficient profit balance.') {
+              this.error_withdraw_message = response;
+
+            } else {
+              this.success_withdraw_message = response;
+            }
+
+            this.withdraw_amount = '';
+          },
+          (error) => {
+
+          }
+        );
+
+    }
+
+    else if (this.choose_withdraw === "team") {
+
+      const FormData = {
+        userId: this.userData?.id,
+        amount: this.withdraw_amount,
+        transactionId: "",
+        phonenumber: this.phonenumber,
+        wallet: this.address,
+        withdrawmethod: this.gateaway,
+      };
+
+      this.http
+        .post(`${environment.baseUrl}/ref-withdraw/create`, FormData, {
+          responseType: 'text',
+        }) // Use baseUrl here
+        .subscribe(
+          (response) => {
+            if (response == 'Profit record not found.') {
+
+              this.error_withdraw_message = response;
+
+            } else if (response == 'Insufficient profit balance.') {
+              this.error_withdraw_message = response;
+
+            } else {
+              this.success_withdraw_message = response;
+            }
+
+            this.withdraw_amount = '';
+          },
+          (error) => {
+
+          }
+        );
+
+    }
+    else{
+
+    }
+
+  }
+
   openModal() {
     this.isOpen = true;
   }
@@ -220,6 +321,15 @@ export class UserWalletComponent  implements OnInit{
 
   closeSendModal() {
     this.isSendOpen = false;
+  }
+
+
+  openWithdraw() {
+    this.isWithdrawOpen = true;
+  }
+
+  closeopenWithdraw() {
+    this.isWithdrawOpen = false;
   }
 
   openBottomSheet() {

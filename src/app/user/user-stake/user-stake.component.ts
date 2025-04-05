@@ -15,7 +15,9 @@ export class UserStakeComponent  implements OnInit{
 
   plansDetails: PlansDetails[] | null = null;
   investUsdBalance: InvestUsdBalance | undefined;
+  usdProfitBalance: usdProfitBalance | undefined;
   userData: UserDetails | null = null;
+
 
   userid: number = 0;
   message:string ='';
@@ -55,6 +57,7 @@ export class UserStakeComponent  implements OnInit{
 
             this.getUdTBalance(this.userid);
             this.getData(this.userid);
+            this.getUsdProfit(this.userid);
           },
           (error) => {
             console.error('Error fetching user profile', error);
@@ -67,6 +70,20 @@ export class UserStakeComponent  implements OnInit{
 
 
 
+  getUsdProfit(userId: number): void {
+    this.http
+      .get<usdProfitBalance>(
+        `${environment.baseUrl}/profit/show-balance/${userId}`
+      )
+      .subscribe(
+        (data) => {
+          this.usdProfitBalance = data;
+        },
+        (error) => {
+          console.error('Error fetching ENA profit details:', error);
+        }
+      );
+  }
 
    getUdTBalance(userId: number): void {
       this.http
@@ -143,6 +160,10 @@ export class UserStakeComponent  implements OnInit{
         );
     }
 
+    get hasRunning(): boolean {
+      return this.plansDetails?.some(plan => plan.status === 'RUNNING') ?? false;
+    }
+
 }
 
 
@@ -153,4 +174,11 @@ export interface PlansDetails {
   startDate: string;
   investmentPackage: string;
   status: string;
+}
+
+
+export interface usdProfitBalance {
+  id: number;
+  totalProfit: number;
+  lastUpdated: number;
 }

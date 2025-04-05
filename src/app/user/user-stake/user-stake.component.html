@@ -15,8 +15,8 @@
 
 
         <div class="flex flex-col">
-          <span>Daily Earnings:</span>
-          <p class="text-xl font-bold">0.000 USDT</p>
+          <span>Earnings:</span>
+          <p class="text-xl font-bold">{{ usdProfitBalance?.totalProfit ?? 0.000}} USDT</p>
         </div>
       </div>
     </div>
@@ -57,10 +57,8 @@
 
   </div>
 
- <div *ngFor="let item of plansDetails">
 
-
-      <div *ngIf="item.status == 'RUNNING'" class="mt-5">
+      <div *ngIf="hasRunning" class="mt-5">
         <div class=" flex flex-row gap-2 bg-orange-300 p-8 bg-opacity-10  w-full  h-24 rounded-2xl">
           <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
@@ -73,7 +71,7 @@
       </div>
 
 
-      <div *ngIf="item.status == 'FINISHED'">
+      <div *ngIf="!hasRunning">
         <button (click)="invest()" class="w-full mt-5">
           <div>
             <div class=" flex flex-row gap-2 bg-orange-400 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
@@ -89,7 +87,7 @@
 
       </div>
 
- </div>
+
  </div>
 
 
@@ -111,7 +109,7 @@
     </svg>
 
      <div class="flex flex-col gap-0 mt-3">
-      <p class="text-sm text-black">{{item.maturityDate}}</p>
+      <p class="text-sm text-black">{{item.maturityDate.substring(0,16)}}</p>
       <p class="text-md  text-green-700">{{item.status}}</p>
      </div>
 

@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDetails } from '../../user-model/user-model.component';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { UserDetails } from '../../user-model/user-model.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-user-referrals',
-  imports: [HttpClientModule, CommonModule],
-  templateUrl: './user-referrals.component.html',
-  styleUrl: './user-referrals.component.css'
+  selector: 'app-user-level3',
+  imports: [CommonModule,HttpClientModule],
+  templateUrl: './user-level3.component.html',
+  styleUrl: './user-level3.component.css'
 })
-export class UserReferralsComponent implements OnInit {
+export class UserLevel3Component implements OnInit{
 
-  selectedTab: string = 'direct';
+
+
 
   refData: UserDetails[] | null = null;
   refData2: UserDetails[][] = [];
   userData: UserDetails | null = null;
-  refBalance: REFbalance | undefined;
   userid: number = 0;
 
 
@@ -75,7 +75,6 @@ export class UserReferralsComponent implements OnInit {
             this.userid = this.userData.id;
             this.getData2(this.userid);
             this.getData(this.userid);
-            this.refBData(this.userid);
           },
           (error) => {
             console.error('Error fetching user profile:', error);
@@ -86,32 +85,4 @@ export class UserReferralsComponent implements OnInit {
     }
   }
 
-  refBData(userId: number): void {
-    this.http
-      .get<REFbalance>(
-        `${environment.baseUrl}/balance/show-ref-balance/${userId}`
-      )
-      .subscribe(
-        (data) => {
-          this.refBalance = data;
-        },
-        (error) => {
-          console.error('Error fetching ENA balance details:', error);
-        }
-      );
-  }
-
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-  }
-
-
-
-}
-
-
-export interface REFbalance {
-  id: number;
-  availableBalance: number;
-  lockedBalance: number;
 }
