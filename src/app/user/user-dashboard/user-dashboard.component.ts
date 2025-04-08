@@ -6,15 +6,17 @@ import { UserDetails } from '../../user-model/user-model.component';
 import { environment } from '../../../environments/environment';
 import { PlansDetails, usdProfitBalance } from '../user-stake/user-stake.component';
 import { REFbalance } from '../user-referrals/user-referrals.component';
+import { UserChatComponent } from "../user-chat/user-chat.component";
 
 @Component({
   selector: 'app-user-dashboard',
-  imports: [HttpClientModule,CommonModule],
+  imports: [HttpClientModule, CommonModule],
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.css'
 })
 export class UserDashboardComponent implements OnInit{
 
+  showChat = false;
 
 
   balanceDetails: BalanceDetails | undefined;
@@ -26,10 +28,13 @@ export class UserDashboardComponent implements OnInit{
   userid: number = 0;
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
 
-   }
+
+toggleChat() {
+  this.showChat = !this.showChat;
+}
 
    ngOnInit() {
     this.getProfile();

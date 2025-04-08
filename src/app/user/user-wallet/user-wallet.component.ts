@@ -96,7 +96,7 @@ export class UserWalletComponent  implements OnInit{
       gate_away: this.gateaway,
       address: this.address,
       phonenumber: this.phonenumber,
-      username: this.username,
+      username: this.userData?.username,
     };
 
 

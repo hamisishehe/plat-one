@@ -1,23 +1,23 @@
-<div class="bg-gradient-to-b from-purple-800 to-indigo-900 min-h-screen p-4 text-white">
+<div class="min-h-screen p-4 text-white bg-gradient-to-b from-purple-800 to-indigo-900">
   <!-- MetaXchange Header -->
-  <div class="text-center mt-6">
+  <div class="mt-6 text-center">
     <h1 class="text-2xl font-bold">Platform</h1>
-    <div class="bg-white bg-opacity-10 rounded-xl p-4 mt-4">
+    <div class="p-4 mt-4 bg-white bg-opacity-10 rounded-xl">
       <h2 class="text-lg font-semibold">Get the Mobile App</h2>
       <p class="text-sm text-gray-300">Download our mobile app for the best experience</p>
-      <button class="bg-white text-black px-4 py-2 rounded-full mt-2 flex items-center justify-center mx-auto">
+      <button class="flex items-center justify-center px-4 py-2 mx-auto mt-2 text-black bg-white rounded-full">
         <span class="mr-2">📱</span> Download Now
       </button>
     </div>
   </div>
 
   <!-- Login Card -->
-  <div class="bg-white bg-opacity-20 rounded-2xl p-6 shadow-lg mt-8 mx-auto w-11/12 max-w-md">
+  <div class="w-11/12 max-w-md p-6 mx-auto mt-8 bg-transparent shadow-lg bg-opacity-20 rounded-2xl">
     <h2 class="text-xl font-semibold text-center">Welcome Back</h2>
-    <p class="text-sm text-gray-300 text-center">Sign in to continue</p>
+    <p class="text-sm text-center text-gray-300">Sign in to continue</p>
 
     <div
-    class="p-4 mb-4 text-sm text-red-500 rounded-lg bg-white dark:bg-gray-800"
+    class="p-4 mb-4 text-sm text-red-500 bg-white rounded-lg dark:bg-gray-800"
     role="alert"
     *ngIf="error"
   >
@@ -29,7 +29,7 @@
 
     <div class="mt-4">
       <!-- Email Input -->
-      <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+      <div class="flex items-center p-2 mb-3 bg-indigo-800 rounded-lg bg-opacity-20">
         <span class="text-gray-300">📧</span>
         <input
           type="email"
@@ -38,18 +38,18 @@
           required
           #validateemail="ngModel"
           placeholder="Email"
-          class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+          class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
         />
 
       </div>
-      <div *ngIf="validateemail.invalid && validateemail.touched" class="text-red-500 text-sm">
+      <div *ngIf="validateemail.invalid && validateemail.touched" class="text-sm text-red-950">
         <small *ngIf="validateemail.errors?.['required']">Email is required.</small>
         <small *ngIf="validateemail.errors?.['email']">Please enter a valid email address.</small>
       </div>
 
 
       <!-- Password Input -->
-      <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-2">
+      <div class="flex items-center p-2 mt-2 mb-1 bg-indigo-800 rounded-lg bg-opacity-20">
         <span class="text-gray-300">🔒</span>
         <input
           type="password"
@@ -59,27 +59,27 @@
           minlength="6"
           #validatepassword="ngModel"
           placeholder="Password"
-          class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+          class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
         />
 
       </div>
-      <div *ngIf="validatepassword.invalid && validatepassword.touched" class="text-red-500 text-sm">
+      <div *ngIf="validatepassword.invalid && validatepassword.touched" class="text-sm text-red-950">
         <small *ngIf="validatepassword.errors?.['required']">Password is required.</small>
         <small *ngIf="validatepassword.errors?.['minlength']">Password must be at least 6 characters long.</small>
       </div>
 
-      <div class="text-right text-sm text-gray-300 cursor-pointer">Forgot Password?</div>
+      <div class="text-sm text-right text-gray-300 cursor-pointer">Forgot Password?</div>
     </div>
 
     <!-- Sign In Button -->
     <button
       [disabled]="!Loginform.valid"
-      class="bg-blue-600 w-full py-2 rounded-lg mt-4"
+      class="w-full py-2 mt-4 bg-blue-600 rounded-lg"
 
     >
     <span *ngIf="loading">
       <svg
-        class="inline mr-2 w-4 h-4 text-white animate-spin"
+        class="inline w-4 h-4 mr-2 text-white animate-spin"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -105,7 +105,7 @@
 
     </form>
 
-    <div class="text-center text-sm text-gray-300 mt-4">
+    <div class="mt-4 text-sm text-center text-gray-300">
       Don't have an account? <a href="/auth/register"><span class="text-white cursor-pointer">Sign Up</span></a>
     </div>
   </div>

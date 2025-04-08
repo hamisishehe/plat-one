@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environment';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
   username: string = '';
   phonenumber: string = '';
   email: string = '';

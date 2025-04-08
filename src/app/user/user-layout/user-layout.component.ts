@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { BottomnavigationComponent } from "../bottomnavigation/bottomnavigation.component";
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { UserDetails } from '../../user-model/user-model.component';
@@ -13,40 +13,31 @@ import { environment } from '../../../environments/environment';
 })
 export class UserLayoutComponent implements OnInit{
 
-  userData: UserDetails | null = null;
+  private inactivityTime: any;
+  private readonly inactivityLimit = 300000; // 5 minutes in milliseconds
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.getProfile();
+    this.resetInactivityTimer();
   }
 
-
-  getProfile() {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      // Set the Authorization header with the Bearer token
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      });
-
-      // Make the HTTP GET request to fetch the profile
-      this.http
-        .get<UserDetails>(`${environment.baseUrl}/user/profile`, {
-          headers,
-        }) // Use baseUrl here
-        .subscribe(
-          (data) => {
-            this.userData = data;
-          },
-          (error) => {
-            console.error('Error fetching user profile', error);
-          }
-        );
-    } else {
-      console.error('No token found');
-    }
+  @HostListener('document:mousemove')
+  @HostListener('document:keypress')
+  onUserActivity() {
+    this.resetInactivityTimer();
   }
 
+  private resetInactivityTimer() {
+    clearTimeout(this.inactivityTime);
+    this.inactivityTime = setTimeout(() => {
+      this.clearToken();
+      window.location.href = '/login';
+    }, this.inactivityLimit);
+  }
+
+  private clearToken() {
+    localStorage.removeItem('token'); // Clear the token from localStorage
+    console.log('User inactive. Token cleared.');
+  }
 }

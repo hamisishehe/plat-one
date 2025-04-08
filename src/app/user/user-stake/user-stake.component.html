@@ -1,14 +1,20 @@
 <div>
 
-  <div class="bg-white bg-opacity-10 rounded-2xl p-4 shadow-md">
+  <div class="w-full h-4 text-center">
+    <p class="mr-5 text-lg font-bold">Stakes</p>
+
+  </div>
+
+
+  <div class="p-2 mt-4 bg-white shadow-md bg-opacity-10 rounded-2xl">
     <div class="flex items-center gap-4">
 
 
     </div>
-    <div class="mt-4 p-4 bg-white bg-opacity-10 rounded-lg">
+    <div class="p-4 mt-4 bg-white rounded-lg bg-opacity-10">
       <h3 class="text-sm text-white">Total Balance</h3>
       <p class="text-2xl font-bold"> {{ investUsdBalance?.availableBalance ?? 0.0 }} USDT</p>
-      <div class="flex justify-between text-sm text-gray-300 mt-2">
+      <div class="flex justify-between mt-2 text-sm text-gray-300">
 
 
 
@@ -28,13 +34,13 @@
 
   <div *ngIf="investUsdBalance && investUsdBalance.availableBalance < 10">
 
-    <div class=" flex flex-row gap-2 bg-orange-300 p-8 bg-opacity-10  w-full  h-24 rounded-2xl">
+    <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-300 bg-opacity-10 rounded-2xl">
       <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
       </svg>
 
 
-      <p class="text-lg mr-5">Insufficient Balance ......... </p>
+      <p class="mr-5 text-lg">Insufficient Balance ......... </p>
     </div>
 
   </div>
@@ -44,13 +50,13 @@
   <div *ngIf="plansDetails?.length === 0">
     <button (click)="invest()" class="w-full mt-5">
       <div>
-        <div class=" flex flex-row gap-2 bg-orange-400 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
+        <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-400 bg-opacity-3 rounded-2xl">
           <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
           </svg>
 
 
-          <p class="text-lg mr-5">Activate Plan</p>
+          <p class="mr-5 text-lg">Activate Plan</p>
         </div>
        </div>
       </button>
@@ -59,13 +65,13 @@
 
 
       <div *ngIf="hasRunning" class="mt-5">
-        <div class=" flex flex-row gap-2 bg-orange-300 p-8 bg-opacity-10  w-full  h-24 rounded-2xl">
+        <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-300 bg-opacity-10 rounded-2xl">
           <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
           </svg>
 
 
-          <p class="text-lg mr-5">already Activated ......... </p>
+          <p class="mr-5 text-lg">already Activated ......... </p>
         </div>
 
       </div>
@@ -74,13 +80,13 @@
       <div *ngIf="!hasRunning">
         <button (click)="invest()" class="w-full mt-5">
           <div>
-            <div class=" flex flex-row gap-2 bg-orange-400 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
+            <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-400 bg-opacity-3 rounded-2xl">
               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
               </svg>
 
 
-              <p class="text-lg mr-5">Activate Plan</p>
+              <p class="mr-5 text-lg">Activate Plan</p>
             </div>
            </div>
           </button>
@@ -103,18 +109,18 @@
 
   <div *ngFor="let item of plansDetails">
 
-  <div class="rounded-s-2xl bg-white mt-5 flex flex-row gap-2 h-20 w-full">
-    <svg class="w-6 h-6  text-green-500 dark:text-orange m-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <div class="flex flex-row w-full h-20 gap-2 mt-5 bg-white rounded-s-2xl">
+    <svg class="w-6 h-6 m-6 text-green-500 dark:text-orange" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 14-4-4m4 4 4-4"/>
     </svg>
 
      <div class="flex flex-col gap-0 mt-3">
       <p class="text-sm text-black">{{item.maturityDate.substring(0,16)}}</p>
-      <p class="text-md  text-green-700">{{item.status}}</p>
+      <p class="text-green-700 text-md">{{item.status}}</p>
      </div>
 
 
-     <p class="text-sm text-green-700 mt-8 pl-20">+ {{item.amount * 0.025}} USDT</p>
+     <p class="pl-20 mt-8 text-sm text-green-700">+ {{item.amount * 0.025}} USDT</p>
 
 
   </div>

@@ -107,6 +107,21 @@ export class UserReferralsComponent implements OnInit {
 
 
 
+
+  copyReferralUrl(referralUrl: string): void {
+    navigator.clipboard
+      .writeText(referralUrl)
+      .then(() => {
+        alert('Referral URL copied to clipboard!');
+      })
+      .catch((err) => {
+        console.error('Failed to copy:', err);
+      });
+  }
+
+
+
+
 }
 
 

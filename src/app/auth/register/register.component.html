@@ -1,18 +1,18 @@
-<div class="bg-gradient-to-b from-purple-800 to-indigo-900 min-h-screen p-4 text-white">
+<div class="min-h-screen p-4 text-white bg-gradient-to-b from-purple-800 to-indigo-900">
   <!-- MetaXchange Header -->
-  <div class="text-center mt-6">
+  <div class="mt-6 text-center">
     <h1 class="text-2xl font-bold">Platform</h1>
-    <div class="bg-white bg-opacity-10 rounded-xl p-4 mt-4">
+    <div class="p-4 mt-4 bg-white bg-opacity-10 rounded-xl">
       <h2 class="text-lg font-semibold">Get the Mobile App</h2>
       <p class="text-sm text-gray-300">Download our mobile app for the best experience</p>
-      <button class="bg-white text-black px-4 py-2 rounded-full mt-2 flex items-center justify-center mx-auto">
+      <button class="flex items-center justify-center px-4 py-2 mx-auto mt-2 text-black bg-white rounded-full">
         <span class="mr-2">📱</span> Download Now
       </button>
     </div>
   </div>
 
   <!-- Signup Card -->
-  <div v-else class="bg-white bg-opacity-10 rounded-2xl p-6 shadow-md mt-8 mx-auto w-11/12 max-w-md">
+  <div v-else class="w-11/12 max-w-md p-6 mx-auto mt-8 bg-white shadow-md bg-opacity-10 rounded-2xl">
     <h2 class="text-xl font-semibold text-center">Create Account</h2>
 
     <div>
@@ -34,8 +34,11 @@
 
     <div class="mt-4">
       <form #registerForm="ngForm" (ngSubmit)="register()">
+
+
+
         <!-- Username Input -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+        <div class="flex items-center p-2 mb-3 bg-indigo-800 rounded-lg bg-opacity-20">
           <span class="text-gray-300">👤</span>
           <input
             [(ngModel)]="username"
@@ -44,15 +47,16 @@
             pattern="^[a-zA-Z0-9_]*$"
             #validateusername="ngModel"
             id="username"
+            required
             type="text"
             placeholder="User Name"
-            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+            class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
           />
 
         </div>
         <div
         *ngIf="validateusername.invalid && validateusername.touched"
-        class="text-red-500 text-sm"
+        class="text-sm text-red-500"
       >
         <small *ngIf="validateusername.errors?.['required']">Username is required.</small>
         <small *ngIf="validateusername.errors?.['minlength']">Username must be at least 3 characters long.</small>
@@ -60,7 +64,7 @@
       </div>
 
         <!-- Email Input -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
+        <div class="flex items-center p-2 mt-3 mb-3 bg-indigo-800 rounded-lg bg-opacity-20">
           <span class="text-gray-300">📧</span>
           <input
             type="email"
@@ -69,21 +73,21 @@
             required
             #validateemail="ngModel"
             placeholder="Email"
-            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+            class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
           />
 
         </div>
 
         <div
             *ngIf="validateemail.invalid && validateemail.touched"
-            class="text-red-500 text-sm"
+            class="text-sm text-red-500"
           >
             <small *ngIf="validateemail.errors?.['required']">Email is required.</small>
             <small *ngIf="validateemail.errors?.['email']">Please enter a valid email address.</small>
           </div>
 
         <!-- Phone Number Input -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
+        <div class="flex items-center p-2 mt-3 mb-3 bg-indigo-800 rounded-lg bg-opacity-20">
           <span class="text-gray-300">📞</span>
           <input
             type="text"
@@ -92,21 +96,21 @@
             pattern="^\d{10}$"
             #validatephone="ngModel"
             placeholder="Phone Number"
-            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+            class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
           />
 
         </div>
 
         <div
             *ngIf="validatephone.invalid && validatephone.touched"
-            class="text-red-500 text-sm"
+            class="text-sm text-red-500"
           >
             <small *ngIf="validatephone.errors?.['required']">Phone number is required.</small>
             <small *ngIf="validatephone.errors?.['pattern']">Phone number must be 10 digits.</small>
           </div>
 
         <!-- Password Input -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
+        <div class="flex items-center p-2 mt-3 mb-3 bg-indigo-800 rounded-lg bg-opacity-20">
           <span class="text-gray-300">🔒</span>
           <input
             type="password"
@@ -116,21 +120,21 @@
             minlength="6"
             #validatepassword="ngModel"
             placeholder="Password"
-            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+            class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
           />
 
         </div>
 
         <div
             *ngIf="validatepassword.invalid && validatepassword.touched"
-            class="text-red-500 text-sm"
+            class="text-sm text-red-500"
           >
             <small *ngIf="validatepassword.errors?.['required']">Password is required.</small>
             <small *ngIf="validatepassword.errors?.['minlength']">Password must be at least 6 characters long.</small>
           </div>
 
         <!-- Referral Code Input (Optional) -->
-        <div class="flex items-center bg-white bg-opacity-20 rounded-lg p-2 mb-3 mt-3">
+        <div class="flex items-center p-2 mt-3 mb-3 bg-indigo-800 rounded-lg bg-opacity-20">
           <span class="text-gray-300">💼</span>
           <input
             type="text"
@@ -138,22 +142,22 @@
             name="referralCode"
             #validatereferral="ngModel"
             placeholder="Referral Code (Optional)"
-            class="bg-transparent w-full text-white ml-2 outline-none rounded-lg"
+            class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
           />
         </div>
 
         <!-- Terms and Conditions Checkbox -->
-        <div class="flex items-center text-sm text-gray-300 mb-3">
+        <div class="flex items-center mb-3 text-sm text-gray-300">
           <input type="checkbox" name="termsAccepted" required  class="mr-2">
           I agree to the <span class="text-white cursor-pointer">Terms and Conditions</span>
 
         </div>
 
         <!-- Submit Button -->
-        <button [disabled]="registerForm.invalid" class="bg-blue-600 w-full py-2 rounded-lg mt-4">Sign Up</button>
+        <button [disabled]="registerForm.invalid" class="w-full py-2 mt-4 bg-blue-600 rounded-lg">Sign Up</button>
       </form>
 
-      <div class="text-center text-sm text-gray-300 mt-4">
+      <div class="mt-4 text-sm text-center text-gray-300">
         Already have an account? <a href="/auth/login"><span class="text-white cursor-pointer">Sign In</span></a>
       </div>
     </div>

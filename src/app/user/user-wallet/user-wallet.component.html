@@ -1,14 +1,19 @@
 <div>
+
+  <div class="w-full h-4 text-center">
+    <p class="mr-5 text-lg font-bold">WALLET</p>
+
+  </div>
   <!-- Profile Card -->
-  <div class="bg-white bg-opacity-10 rounded-2xl p-4 shadow-md">
+  <div class="p-2 mt-3 bg-white shadow-md bg-opacity-10 rounded-2xl">
     <div class="flex items-center gap-4">
 
 
     </div>
-    <div class="mt-4 p-4 bg-white bg-opacity-10 rounded-lg">
+    <div class="p-4 mt-4 bg-white rounded-lg bg-opacity-10">
       <h3 class="text-sm text-white">Total Balance</h3>
       <p class="text-2xl font-bold"> {{ balanceDetails?.availableBalance ?? 0.0 }} USDT</p>
-      <div class="flex justify-between text-sm text-gray-300 mt-2">
+      <div class="flex justify-between mt-2 text-sm text-gray-300">
 
         <div class="flex flex-col">
           <span>Work Account Balance:</span>
@@ -32,39 +37,39 @@
 
 
   <!-- Overview Section -->
-  <button (click)="openSendModal()" class="w-full">
+  <button (click)="openSendModal()" class="w-full mt-3">
    <div>
-    <div class=" flex flex-row gap-2 bg-pink-600 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
+    <div class="flex flex-row w-full h-24 gap-2 p-8 bg-pink-600 bg-opacity-3 rounded-2xl">
       <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
       </svg>
 
 
-      <p class="text-lg mr-5">Send To work Account</p>
+      <p class="mr-5 text-lg">Send To work Account</p>
     </div>
    </div>
   </button>
-  <div class="grid grid-cols-2 gap-4 mt-2 bg-slate-50 bg-opacity-10 rounded-lg">
+  <div class="grid grid-cols-2 gap-4 mt-2 rounded-lg bg-slate-50 bg-opacity-10">
 
 
     <button (click)="openModal()">
-    <div class=" flex flex-row gap-2 bg-orange-400 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
+    <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-400 bg-opacity-3 rounded-2xl">
       <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
       </svg>
 
-      <p class="text-lg mr-3">Deposit</p>
+      <p class="mr-3 text-lg">Deposit</p>
     </div>
   </button>
 
 
   <button (click)="openWithdraw()">
-  <div class=" flex flex-row gap-2 bg-green-600 p-8 bg-opacity-3  w-full  h-24 rounded-2xl">
+  <div class="flex flex-row w-full h-24 gap-2 p-8 bg-green-600 bg-opacity-3 rounded-2xl">
     <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
     </svg>
 
-    <p class="text-lg mr-3">Withdraw</p>
+    <p class="mr-3 text-lg">Withdraw</p>
   </div>
 </button>
 
@@ -83,19 +88,21 @@
 
     <div *ngFor="let item of depositDetails">
 
-    <div class="rounded-s-2xl bg-white mt-5 flex flex-row gap-2 h-20 w-full">
-      <svg class="w-6 h-6  text-green-500 dark:text-orange m-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+    <div class="flex flex-row w-full h-20 mt-5 bg-white rounded-s-2xl">
+
+      <svg class="w-6 h-6 m-6 text-green-500 dark:text-orange" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 14-4-4m4 4 4-4"/>
       </svg>
 
-       <div class="flex flex-col gap-0">
-        <p class="text-lg font-bold text-black">Deposit</p>
+
+       <div class="grid grid-rows-3 mt-2">
+        <p class="text-sm font-bold text-black">Deposit</p>
         <p class="text-sm text-black">{{item.createdAt.substr(1,19)}}</p>
-        <p class="text-md  text-green-700">{{item.status}}</p>
+        <p class="text-sm text-green-700">{{item.status}}</p>
        </div>
 
 
-       <p class="text-sm text-green-700 mt-8 pl-20">+ {{item.amount}} USDT</p>
+       <p class="pl-20 mt-8 text-sm text-green-700">+ {{item.amount}} USDT</p>
 
 
     </div>
@@ -108,8 +115,8 @@
   <div class="flex flex-col items-center justify-center h-screen">
 
     <!-- Modal -->
-    <div *ngIf="isOpen" class="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-50 rounded-lg">
-      <div class="bg-blue-950 p-6 rounded-lg shadow-lg w-96">
+    <div *ngIf="isOpen" class="fixed inset-0 flex items-center justify-center bg-opacity-50 rounded-lg bg-green-950">
+      <div class="p-6 rounded-lg shadow-lg bg-blue-950 w-96">
         <h3 class="text-lg font-semibold">DEPOSIT USDT</h3>
          <div >
             <form (ngSubmit)="deposit()" #depositform="ngForm">
@@ -132,7 +139,7 @@
                 <!-- Error message for Amount -->
                 <div
                   *ngIf="addressInput.invalid && amountInput.touched"
-                  class="text-red-600 text-sm mt-1"
+                  class="mt-1 text-sm text-red-600"
                 ></div>
               </div>
 
@@ -158,13 +165,13 @@
                 <!-- Error message for Amount -->
                 <div
                   *ngIf="amountInput.invalid && amountInput.touched"
-                  class="text-red-600 text-sm mt-1"
+                  class="mt-1 text-sm text-red-600"
                 ></div>
               </div>
 
               <button
               [disabled]="!depositform.valid"
-              class="bg-blue-600 w-full py-2 rounded-lg mt-4"
+              class="w-full py-2 mt-4 bg-blue-600 rounded-lg"
             >
               Generate Address
             </button>
@@ -175,8 +182,8 @@
             </form>
 
          </div>
-        <div class="mt-4 flex justify-end">
-          <button (click)="closeModal()" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+        <div class="flex justify-end mt-4">
+          <button (click)="closeModal()" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
             Close
           </button>
         </div>
@@ -185,17 +192,17 @@
 
 
     <!-- Modal for withdaw -->
-    <div *ngIf="isWithdrawOpen" class="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-50">
-      <div class="bg-blue-950 p-6 rounded-lg shadow-lg w-96 text-white">
-        <h3 class="text-lg font-semibold mb-4">WITHDRAW USDT</h3>
+    <div *ngIf="isWithdrawOpen" class="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-green-950">
+      <div class="p-6 text-white rounded-lg shadow-lg bg-blue-950 w-96">
+        <h3 class="mb-4 text-lg font-semibold">WITHDRAW USDT</h3>
 
         <div class="bg-white" *ngIf="success_withdraw_message">
-          <h3 class="text-lg font-semibold mb-4 text-green-600 p-4">{{success_withdraw_message}}</h3>
+          <h3 class="p-4 mb-4 text-lg font-semibold text-green-600">{{success_withdraw_message}}</h3>
 
         </div>
 
         <div class="bg-white" *ngIf="error_withdraw_message">
-          <h3 class="text-lg font-semibold mb-4 text-red-500 p-4">{{error_withdraw_message}}</h3>
+          <h3 class="p-4 mb-4 text-lg font-semibold text-red-500">{{error_withdraw_message}}</h3>
 
         </div>
 
@@ -213,7 +220,7 @@
               name="choose_withdraw"
               id="choose_withdraw"
               required
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              class="block w-full px-3 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white dark:border-gray-600"
             >
               <option value="" disabled selected>Select an option</option>
               <option value="team">Team Commission</option>
@@ -221,7 +228,7 @@
             </select>
             <div
               *ngIf="validate_choose_withdraw.invalid && validate_choose_withdraw.touched"
-              class="text-red-400 text-sm mt-1"
+              class="mt-1 text-sm text-red-400"
             >
               Please select a balance type.
             </div>
@@ -246,7 +253,7 @@
             <!-- Error message for Amount -->
             <div
               *ngIf="withaddressInput.invalid && withaddressInput.touched"
-              class="text-red-600 text-sm mt-1"
+              class="mt-1 text-sm text-red-600"
             ></div>
           </div>
 
@@ -265,11 +272,11 @@
               min="10"
               max="10000"
               required
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              class="block w-full px-3 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white dark:border-gray-600"
             />
             <div
               *ngIf="validatewithdraw_amount.invalid && validatewithdraw_amount.touched"
-              class="text-red-400 text-sm mt-1"
+              class="mt-1 text-sm text-red-400"
             >
               Please enter an amount between 10 and 10000.
             </div>
@@ -278,15 +285,15 @@
           <!-- Submit Button -->
           <button
             [disabled]="!withdrawForm.valid"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 w-full rounded-lg transition duration-200 disabled:opacity-50"
+            class="w-full py-2 font-semibold text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
           >
             Send Request
           </button>
         </form>
 
         <!-- Close Button -->
-        <div class="mt-4 flex justify-end">
-          <button (click)="closeopenWithdraw()" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200">
+        <div class="flex justify-end mt-4">
+          <button (click)="closeopenWithdraw()" class="px-4 py-2 text-white transition duration-200 bg-red-500 rounded hover:bg-red-600">
             Close
           </button>
         </div>
@@ -295,8 +302,8 @@
 
 
  <!-- Modal for swap -->
-    <div *ngIf="isSendOpen" class="fixed inset-0 flex items-center justify-center bg-green-950 bg-opacity-50 rounded-lg">
-      <div class="bg-blue-950 p-6 rounded-lg shadow-lg w-96">
+    <div *ngIf="isSendOpen" class="fixed inset-0 flex items-center justify-center bg-opacity-50 rounded-lg bg-green-950">
+      <div class="p-6 rounded-lg shadow-lg bg-blue-950 w-96">
         <h3 class="text-lg font-semibold">SEND USDT TO WORK ACCOUNT</h3>
          <div >
             <form (ngSubmit)="sendToWork()" #swapform="ngForm">
@@ -322,13 +329,13 @@
                 <!-- Error message for Amount -->
                 <div
                   *ngIf="amountInput.invalid && amountInput.touched"
-                  class="text-red-600 text-sm mt-1"
+                  class="mt-1 text-sm text-red-600"
                 ></div>
               </div>
 
               <button
               [disabled]="!swapform.valid"
-              class="bg-blue-600 w-full py-2 rounded-lg mt-4"
+              class="w-full py-2 mt-4 bg-blue-600 rounded-lg"
             >
               Send
             </button>
@@ -339,8 +346,8 @@
             </form>
 
          </div>
-        <div class="mt-4 flex justify-end">
-          <button (click)="closeModal()" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+        <div class="flex justify-end mt-4">
+          <button (click)="closeModal()" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
             Close
           </button>
         </div>
@@ -350,11 +357,11 @@
 
 
  <!-- Modal for bottom sheet -->
-    <div *ngIf="isBottomSheetOpen" class="fixed bottom-0 left-0 right-0 bg-blue-700 shadow-lg p-6 rounded-t-2xl transition-transform transform translate-y-0 h-1/2">
-      <h3 class="text-2xl ml-3 font-semibold">Deposit Details</h3>
+    <div *ngIf="isBottomSheetOpen" class="fixed bottom-0 left-0 right-0 p-6 transition-transform transform translate-y-0 bg-blue-700 shadow-lg rounded-t-2xl h-1/2">
+      <h3 class="ml-3 text-2xl font-semibold">Deposit Details</h3>
 
-      <div class="m-2 rounded-2xl bg-transparent shadow-2xl border-red-200">
-        <p class=" text-white p-5">Please send only in USDT BEP20 to this address</p>
+      <div class="m-2 bg-transparent border-red-200 shadow-2xl rounded-2xl">
+        <p class="p-5 text-white ">Please send only in USDT BEP20 to this address</p>
 
       </div>
 
@@ -364,7 +371,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2"/>
           </svg>
 
-          <p class=" text-white p-5">Deposit  {{ amount }} </p>
+          <p class="p-5 text-white ">Deposit  {{ amount }} </p>
 
         </div>
 
@@ -383,7 +390,7 @@
       />
       <button
         (click)="copyReferralUrl(referralUrlInput.value)"
-        class="ml-2 text-gray-500 hover:text-gray-700 mt-3"
+        class="mt-3 ml-2 text-gray-500 hover:text-gray-700"
       >
       <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M14 4v3a1 1 0 0 1-1 1h-3m4 10v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2m11-3v10a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V7.87a1 1 0 0 1 .24-.65l2.46-2.87a1 1 0 0 1 .76-.35H18a1 1 0 0 1 1 1Z"/>
@@ -394,7 +401,7 @@
 
 
       <!-- Close Bottom Sheet -->
-      <button (click)="closeBottomSheet()" class="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-900">
+      <button (click)="closeBottomSheet()" class="px-4 py-2 mt-4 text-white bg-gray-700 rounded hover:bg-gray-900">
         Close
       </button>
     </div>
