@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  baseUrl: 'http://test-api.yourdomain.com/api',
+  baseUrl: 'https://platform-lirq.onrender.com/api',
 };
