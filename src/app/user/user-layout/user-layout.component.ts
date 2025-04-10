@@ -32,7 +32,7 @@ export class UserLayoutComponent implements OnInit{
     clearTimeout(this.inactivityTime);
     this.inactivityTime = setTimeout(() => {
       this.clearToken();
-      window.location.href = '/login';
+      window.location.href = '/auth/login';
     }, this.inactivityLimit);
   }
 
