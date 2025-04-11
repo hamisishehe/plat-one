@@ -47,49 +47,74 @@
 
 <div *ngIf="investUsdBalance && investUsdBalance.availableBalance >= 10">
 
-  <div *ngIf="plansDetails?.length === 0">
+  <div *ngIf="plansDetails?.length === null" class="mt-3">
+
     <button (click)="invest()" class="w-full mt-5">
-      <div>
-        <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-400 bg-opacity-3 rounded-2xl">
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
-          </svg>
-
-
-          <p class="mr-5 text-lg">Activate Plan</p>
+      <label class="flex items-center cursor-pointer">
+        <!-- Switch -->
+        <div class="relative">
+          <input type="checkbox" class="sr-only" [(ngModel)]="isPlanActive" (change)="invest()" />
+          <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+          <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
         </div>
-       </div>
+
+        <!-- Text and Icon -->
+        <div class="flex items-center ml-4 p-4 rounded-2xl bg-orange-400 bg-opacity-30 w-full h-24 gap-2">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+          </svg>
+          <p class="text-lg">Activate Plan</p>
+        </div>
+      </label>
       </button>
 
   </div>
 
 
       <div *ngIf="hasRunning" class="mt-5">
-        <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-300 bg-opacity-10 rounded-2xl">
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
-          </svg>
+        <div class="flex flex-row justify-between items-center w-full h-24 gap-2 p-8 bg-orange-300 bg-opacity-10 rounded-2xl">
+          <!-- Left Side: Icon + Text -->
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+            </svg>
+            <p class="text-lg"> Activated .........</p>
+          </div>
 
-
-          <p class="mr-5 text-lg">already Activated ......... </p>
+          <!-- Right Side: Toggle Switch -->
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" [(ngModel)]="isPlanActive" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-400 transition-colors"></div>
+            <div
+              class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-md transform peer-checked:translate-x-full transition-transform">
+            </div>
+          </label>
         </div>
+
 
       </div>
 
 
-      <div *ngIf="!hasRunning">
-        <button (click)="invest()" class="w-full mt-5">
-          <div>
-            <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-400 bg-opacity-3 rounded-2xl">
-              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
-              </svg>
+      <div *ngIf="!hasRunning" class="mt-4">
+        <label class="flex items-center cursor-pointer">
+          <!-- Switch -->
+          <div class="relative">
+            <input type="checkbox" class="sr-only" [(ngModel)]="isPlanActive" (change)="invest()" />
+            <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+          </div>
 
-
-              <p class="mr-5 text-lg">Activate Plan</p>
-            </div>
-           </div>
-          </button>
+          <!-- Text and Icon -->
+          <div class="flex items-center ml-4 p-4 rounded-3xl bg-orange-400 bg-opacity-30 w-full h-24 gap-2">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+            </svg>
+            <p class="text-lg">Activate Plan</p>
+          </div>
+        </label>
 
       </div>
 

@@ -4,15 +4,17 @@ import { InvestUsdBalance } from '../user-wallet/user-wallet.component';
 import { UserDetails } from '../../user-model/user-model.component';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-stake',
-  imports: [HttpClientModule, HttpClientModule, CommonModule],
+  imports: [HttpClientModule, HttpClientModule, CommonModule,FormsModule],
   templateUrl: './user-stake.component.html',
   styleUrl: './user-stake.component.css'
 })
 export class UserStakeComponent  implements OnInit{
 
+  isPlanActive: boolean = true;
   plansDetails: PlansDetails[] | null = null;
   investUsdBalance: InvestUsdBalance | undefined;
   usdProfitBalance: usdProfitBalance | undefined;

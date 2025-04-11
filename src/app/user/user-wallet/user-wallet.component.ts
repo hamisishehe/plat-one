@@ -19,6 +19,8 @@ export class UserWalletComponent  implements OnInit{
   isBottomSheetOpen = false;
   success_withdraw_message:string ='';
   error_withdraw_message:string ='';
+  success_send_message:string =''
+  error_send_message:string ='';;
 
 
   amount:string="";
@@ -143,15 +145,20 @@ export class UserWalletComponent  implements OnInit{
         (response) => {
           if (response === 'Balance not found for user.') {
 
+            this.error_send_message = response;
+            window.location.href = '/user/user-wallet';
+
           } else if (response === 'Insufficient balance for this swap.') {
 
+            this.error_send_message = response;
+            window.location.href = '/user/user-wallet';
           } else {
+
+            this.success_send_message = response;
+            window.location.href = '/user/user-wallet';
 
           }
 
-          console.log('====================================');
-          console.log(response);
-          console.log('====================================');
 
           this.amount = '';
         },

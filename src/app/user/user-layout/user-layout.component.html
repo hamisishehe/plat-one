@@ -1,7 +1,7 @@
-<div class="bg-gradient-to-b from-purple-800 to-indigo-900 min-h-screen p-4 text-white">
+<div class="min-h-screen p-4 text-white bg-gradient-to-b from-purple-800 to-indigo-900">
   <router-outlet></router-outlet>
 
-  <div class="fixed bottom-0 left-0 right-0 bg-black  p-3 flex justify-around">
+  <div class="fixed bottom-0 left-0 right-0 flex justify-around p-3 bg-black">
     <a routerLink="user/user-dashboard"
        routerLinkActive="active-link"
        [routerLinkActiveOptions]="{ exact: true }"
@@ -12,7 +12,7 @@
        routerLinkActive="active-link"
        [routerLinkActiveOptions]="{ exact: true }"
        class="nav-link">
-      NFTs
+      Stake
     </a>
     <a routerLink="user/user-wallet"
        routerLinkActive="active-link"
