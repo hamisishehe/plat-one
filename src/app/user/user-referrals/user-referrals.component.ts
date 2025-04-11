@@ -35,9 +35,6 @@ export class UserReferralsComponent implements OnInit {
       .subscribe(
         (data) => {
           this.refData = data;
-          console.log('====================================');
-          console.log(data);
-          console.log('====================================');
         },
         (error) => {
           console.error('Error fetching plans details:', error);

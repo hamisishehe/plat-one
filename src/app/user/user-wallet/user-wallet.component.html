@@ -220,7 +220,7 @@
               name="choose_withdraw"
               id="choose_withdraw"
               required
-              class="block w-full px-3 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              class="block w-full px-3 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="" disabled selected>Select an option</option>
               <option value="team">Team Commission</option>
@@ -238,7 +238,7 @@
           <div class="mt-4">
             <label
               for="address"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              class="block mb-2 text-sm font-medium text-white"
               >Your Withdraw Address</label
             >
             <input
@@ -259,7 +259,7 @@
 
           <!-- Amount Input -->
           <div class="mb-4">
-            <label for="amount" class="block mb-2 text-sm font-medium">
+            <label for="amount" class="block mb-2 text-sm font-medium text-white">
               Amount
             </label>
             <input
@@ -323,7 +323,7 @@
               <div class="mt-4">
                 <label
                   for="amount"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  class="block mb-2 text-sm font-medium text-white"
                   >Amount</label
                 >
                 <input
@@ -335,7 +335,7 @@
                   placeholder="0.00"
                   min="1"
                   max="10000"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  class="bg-gray-50 border border-gray-300 text-black text-sm  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   required
                 />
                 <!-- Error message for Amount -->
@@ -359,7 +359,7 @@
 
          </div>
         <div class="flex justify-end mt-4">
-          <button (click)="closeModal()" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
+          <button (click)="closeSendModal()" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
             Close
           </button>
         </div>
@@ -389,24 +389,24 @@
 
 
       </div> -->
-      <div class="w-full h-32">
+      <div class="w-full mt-10">
 
-        <img src="deposit.jpg" alt="" srcset="" style="width: 100; height: 100;">
+        <img src="deposit.jpg" alt="" srcset="" style="width: 100; height: 50px;">
       </div>
 
-      <div class="mt-64">
+      <div class="mt-10">
         <input
         #referralUrlInput
         type="text"
         value="0x6477578C0711E2de16aD8Dd5afd9C2d28D32FceD"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         readonly
       />
       <button
         (click)="copyReferralUrl(referralUrlInput.value)"
         class="mt-3 ml-2 text-gray-500 hover:text-gray-700"
       >
-      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M14 4v3a1 1 0 0 1-1 1h-3m4 10v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2m11-3v10a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V7.87a1 1 0 0 1 .24-.65l2.46-2.87a1 1 0 0 1 .76-.35H18a1 1 0 0 1 1 1Z"/>
       </svg>
 

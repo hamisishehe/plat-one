@@ -19,6 +19,21 @@ export class UserDashboardComponent implements OnInit{
   showChat = false;
 
 
+  cryptoData: any[] = [];
+  cryptoSymbols: string[] = [
+    'BTC',
+    'ETH',
+    'USDT',
+    'SOL',
+    'DOGE',
+    'XRP',
+    'SUI',
+    'PEPE',
+    'BNB',
+  ];
+
+
+
   balanceDetails: BalanceDetails | undefined;
    usdProfitBalance: usdProfitBalance | undefined;
   investUsdBalance: InvestUsdBalance | undefined;
@@ -38,6 +53,8 @@ toggleChat() {
 
    ngOnInit() {
     this.getProfile();
+    this.fetchCryptoData();
+
   }
 
 
@@ -59,7 +76,7 @@ toggleChat() {
         }) // Use baseUrl here
         .subscribe(
           (data) => {
-            console.log(data);
+
             this.userData = data;
 
             this.userData = data;
@@ -87,9 +104,6 @@ toggleChat() {
       .get<PlansDetails[]>(`${environment.baseUrl}/investments/${userId}`) // Use baseUrl here
       .subscribe(
         (data) => {
-          console.log('====================================');
-          console.log(data);
-          console.log('====================================');
           this.plansDetails = data;
         },
         (error) => {
@@ -158,6 +172,70 @@ toggleChat() {
           }
         );
     }
+
+
+
+    fetchCryptoData() {
+      const symbols = this.cryptoSymbols.join(',');
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbols}&tsyms=USD`;
+
+      this.http.get(url).subscribe(
+        (data: any) => {
+          this.cryptoData = this.transformData(data);
+        },
+        (error) => {
+          console.error('Error fetching crypto data:', error);
+        }
+      );
+    }
+
+    transformData(data: any) {
+      return this.cryptoSymbols.map((symbol) => {
+        const info = data.RAW[symbol].USD;
+        return {
+          name: info.FROMSYMBOL,
+          symbol: symbol,
+          price: info.PRICE,
+          marketCap: info.MKTCAP,
+          volume24h: info.TOTALVOLUME24H,
+          supply: info.SUPPLY,
+          change24h: info.CHANGE24HOUR,
+          percentChange: info.CHANGEPCT24HOUR,
+          chart: this.generateChartUrl(symbol),
+          image: this.getImageUrl(symbol),
+        };
+      });
+    }
+
+    // Function to generate the chart URL
+    generateChartUrl(symbol: string): string {
+      return `https://images.cryptocompare.com/sparkchart/${symbol}/USD/latest.png`; // Chart image URL
+    }
+
+    // Function to get the icon URL
+    getImageUrl(symbol: string): string {
+      return `https://www.cryptocompare.com/media/${this.getIconId(
+        symbol
+      )}.png?width=25`; // Icon image URL
+    }
+
+    // Function to map symbols to their respective image IDs
+    getIconId(symbol: string): string {
+      const iconIds: { [key: string]: string } = {
+        BTC: '37746251/btc',
+        ETH: '37746238/eth',
+        USDT: '34835941/usdc',
+        SOL: '37747734/sol',
+        DOGE: '37746339/doge',
+        XRP: '38553096/xrp',
+        SUI: '44082045/sui',
+        PEPE: '44082118/pepe',
+        BNB: '40485170/bnb',
+        // Add more mappings as needed
+      };
+      return iconIds[symbol] || symbol.toLowerCase(); // Default to lowercase if not found
+    }
+
 
   logout() {
     localStorage.removeItem('token');
