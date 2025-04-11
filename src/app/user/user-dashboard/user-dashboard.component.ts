@@ -53,7 +53,7 @@ toggleChat() {
 
    ngOnInit() {
     this.getProfile();
-    this.fetchCryptoData();
+
 
   }
 
@@ -76,7 +76,7 @@ toggleChat() {
         }) // Use baseUrl here
         .subscribe(
           (data) => {
-
+            console.log(data);
             this.userData = data;
 
             this.userData = data;
@@ -86,6 +86,7 @@ toggleChat() {
             this.getUsdProfit(this.userid);
             this.getData(this.userid);
             this.refBData(this.userid);
+            this.fetchCryptoData();
 
 
           },
@@ -104,6 +105,9 @@ toggleChat() {
       .get<PlansDetails[]>(`${environment.baseUrl}/investments/${userId}`) // Use baseUrl here
       .subscribe(
         (data) => {
+          console.log('====================================');
+          console.log(data);
+          console.log('====================================');
           this.plansDetails = data;
         },
         (error) => {
@@ -115,7 +119,7 @@ toggleChat() {
   getBalance(userId: number): void {
     this.http
       .get<BalanceDetails>(
-        `${environment.baseUrl}/usdt/show-balance/${userId}`
+        `${environment.baseUrl}/balance/show-balance/${userId}`
       )
       .subscribe(
         (data) => {

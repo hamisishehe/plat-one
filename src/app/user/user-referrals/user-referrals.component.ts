@@ -87,14 +87,14 @@ export class UserReferralsComponent implements OnInit {
   refBData(userId: number): void {
     this.http
       .get<REFbalance>(
-        `${environment.baseUrl}/profit/show-ref-balance/${userId}`
+        `${environment.baseUrl}/balance/show-ref-balance/${userId}`
       )
       .subscribe(
         (data) => {
           this.refBalance = data;
         },
         (error) => {
-          console.error('Error fetching ENA balance details:', error);
+          console.error('Error fetching  balance details:', error);
         }
       );
   }

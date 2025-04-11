@@ -176,6 +176,7 @@ export class UserWalletComponent  implements OnInit{
       .get<DepositDetails[]>(`${environment.baseUrl}/deposits/user/${userId}`) // Use baseUrl here
       .subscribe(
         (data) => {
+
           this.depositDetails = data;
         },
         (error) => {
