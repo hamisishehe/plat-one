@@ -45,6 +45,8 @@ export class LoginComponent {
           const token = response['token'];
           const role = response['role'];
 
+          console.log("........................");
+
           // if (
           //   role !== 'USER' &&
           //   role !== 'ADMIN'
