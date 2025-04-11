@@ -26,23 +26,13 @@ export class LoginComponent {
   login() {
     this.loading = true;
 
-    console.log('loading');
-
-    // Sanitize inputs
-    const sanitizedEmail = this.sanitizeInput(this.email);
-    const sanitizedPassword = this.sanitizeInput(this.password);
-
-    // Basic validation
-    if (!this.validateInputs(sanitizedEmail, sanitizedPassword)) {
-      this.message = 'Invalid email or password format.';
-      this.loading = false;
-      return;
-    }
 
     const LoginForm = {
-      email: sanitizedEmail,
-      password: sanitizedPassword,
+      email: this.email,
+      password: this.password,
     };
+
+    console.log(LoginForm);
 
     this.http
       .post<any>(
@@ -55,15 +45,15 @@ export class LoginComponent {
           const token = response['token'];
           const role = response['role'];
 
-          if (
-            role !== 'USER' &&
-            role !== 'ADMIN'
-          ) {
-            this.message = 'Access denied.';
-            this.loading = false;
-            console.error('Access denied for role:', role);
-            return;
-          }
+          // if (
+          //   role !== 'USER' &&
+          //   role !== 'ADMIN'
+          // ) {
+          //   this.message = 'Access denied.';
+          //   this.loading = false;
+          //   console.error('Access denied for role:', role);
+          //   return;
+          // }
 
           if (role === 'USER') {
             localStorage.setItem('token', token);
@@ -87,15 +77,6 @@ export class LoginComponent {
       );
   }
 
-  // Simple input sanitization
-  private sanitizeInput(input: string): string {
-    return input.trim(); // Trims whitespace
-  }
 
-  // Basic validation for email and password
-  private validateInputs(email: string, password: string): boolean {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email pattern
-    return emailPattern.test(email) && password.length >= 6; // Password must be at least 6 characters
-  }
 
 }
