@@ -115,7 +115,7 @@ toggleChat() {
   getBalance(userId: number): void {
     this.http
       .get<BalanceDetails>(
-        `${environment.baseUrl}/balance/show-balance/${userId}`
+        `${environment.baseUrl}/usdt/show-balance/${userId}`
       )
       .subscribe(
         (data) => {

@@ -35,6 +35,7 @@ export class UserReferralsComponent implements OnInit {
       .subscribe(
         (data) => {
           this.refData = data;
+
         },
         (error) => {
           console.error('Error fetching plans details:', error);
@@ -86,7 +87,7 @@ export class UserReferralsComponent implements OnInit {
   refBData(userId: number): void {
     this.http
       .get<REFbalance>(
-        `${environment.baseUrl}/balance/show-ref-balance/${userId}`
+        `${environment.baseUrl}/profit/show-ref-balance/${userId}`
       )
       .subscribe(
         (data) => {
