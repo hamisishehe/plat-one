@@ -16,16 +16,10 @@
       <div class="flex justify-between mt-2 text-sm text-gray-300">
 
         <div class="flex flex-col">
-          <span>Work Account Balance:</span>
+          <span>Trade Account Balance:</span>
           <p class="text-xl font-bold">{{ investUsdBalance?.availableBalance ?? 0.0 }} USDT</p>
         </div>
 
-
-
-        <div class="flex flex-col">
-          <span>Daily Earnings:</span>
-          <p class="text-xl font-bold">0.000 USDT</p>
-        </div>
       </div>
     </div>
 
@@ -45,7 +39,7 @@
       </svg>
 
 
-      <p class="mr-5 text-lg">Send To work Account</p>
+      <p class="mr-5 text-lg">Transfer To Trading account</p>
     </div>
    </div>
   </button>
@@ -224,7 +218,7 @@
             >
               <option value="" disabled selected>Select an option</option>
               <option value="team">Team Commission</option>
-              <option value="daily">Daily Earning Balance</option>
+              <option value="daily">Daily Trade Balance</option>
             </select>
             <div
               *ngIf="validate_choose_withdraw.invalid && validate_choose_withdraw.touched"
