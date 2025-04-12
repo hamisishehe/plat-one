@@ -76,7 +76,7 @@ toggleChat() {
         }) // Use baseUrl here
         .subscribe(
           (data) => {
-            console.log(data);
+
             this.userData = data;
 
             this.userData = data;
@@ -105,9 +105,7 @@ toggleChat() {
       .get<PlansDetails[]>(`${environment.baseUrl}/investments/${userId}`) // Use baseUrl here
       .subscribe(
         (data) => {
-          console.log('====================================');
-          console.log(data);
-          console.log('====================================');
+
           this.plansDetails = data;
         },
         (error) => {
