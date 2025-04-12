@@ -98,7 +98,6 @@
     type="text"
     [(ngModel)]="phonenumber"
     name="phoneNumber"
-    pattern="^\\d{10}$"
     required
     #validatephone="ngModel"
     placeholder="Phone Number"
@@ -112,7 +111,6 @@
   class="text-sm text-red-500"
 >
   <small *ngIf="validatephone.errors?.['required']">Phone number is required.</small>
-  <small *ngIf="validatephone.errors?.['pattern']">Phone number must be 10 digits.</small>
 </div>
 
 

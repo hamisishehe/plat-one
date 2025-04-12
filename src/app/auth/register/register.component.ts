@@ -15,7 +15,7 @@ export class RegisterComponent {
 
 
 
-  countryCode: string = '+255'; // default e.g. Tanzania
+  countryCode: string = '+61'; // default e.g. Tanzania
 
   countries = [
     { name: 'Afghanistan', dialCode: '+93', flag: '🇦🇫' },
