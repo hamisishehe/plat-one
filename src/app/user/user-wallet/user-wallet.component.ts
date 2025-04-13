@@ -237,7 +237,7 @@ export class UserWalletComponent  implements OnInit{
         amount: this.withdraw_amount,
         transactionId: "",
         phonenumber: this.phonenumber,
-        wallet: this.address,
+        wallet: this.withdraw_address,
         withdrawmethod: this.gateaway,
       };
 
@@ -274,7 +274,7 @@ export class UserWalletComponent  implements OnInit{
         amount: this.withdraw_amount,
         transactionId: "",
         phonenumber: this.phonenumber,
-        wallet: this.address,
+        wallet: this.withdraw_address,
         withdrawmethod: this.gateaway,
       };
 
