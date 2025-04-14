@@ -34,9 +34,9 @@
   <div *ngIf="investUsdBalance && investUsdBalance.availableBalance >= 10">
 
     <!-- No Plans Active -->
-    <!-- <div *ngIf="plansDetails?.length === null" class="mt-3">
+    <div *ngIf="plansDetails?.length === null" class="mt-3">
       <ng-container *ngTemplateOutlet="activateTemplate; context: { isButton: true }"></ng-container>
-    </div>  -->
+    </div>
 
     <!-- Plan Running -->
     <div *ngIf="hasRunning" class="mt-5">
