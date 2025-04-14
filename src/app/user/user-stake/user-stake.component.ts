@@ -142,10 +142,24 @@ export class UserStakeComponent  implements OnInit{
               this.message = response;
               console.log(response);
 
-            } else {
+            }
+            else if (
+              response === 'An active investment already exists.'
+            ) {
+              this.message = response;
+              console.log(response);
+            }
+            else if (
+              response === 'Successfully'
+            ) {
+              this.message = response;
+              console.log(response);
+              window.location.reload();
+            }
+
+            else {
               this.message = response;
               window.location.reload();
-
               console.log(response);
 
             }
