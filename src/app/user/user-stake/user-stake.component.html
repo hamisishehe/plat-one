@@ -1,184 +1,117 @@
 <div>
 
+  <!-- Header -->
   <div class="w-full h-4 text-center">
     <p class="mr-5 text-lg font-bold">Trade</p>
-
   </div>
 
-
+  <!-- Balance Box -->
   <div class="p-2 mt-4 bg-white shadow-md bg-opacity-10 rounded-2xl">
-    <div class="flex items-center gap-4">
-
-
-    </div>
     <div class="p-4 mt-4 bg-white rounded-lg bg-opacity-10">
       <h3 class="text-sm text-white">Total Balance</h3>
-      <p class="text-2xl font-bold"> {{ investUsdBalance?.availableBalance ?? 0.0 }} USDT</p>
+      <p class="text-2xl font-bold">{{ investUsdBalance?.availableBalance ?? 0.0 }} USDT</p>
       <div class="flex justify-between mt-2 text-sm text-gray-300">
-
-
-
-
-
         <div class="flex flex-col">
           <span>Earnings:</span>
-          <p class="text-xl font-bold">{{ usdProfitBalance?.totalProfit ?? 0.000}} USDT</p>
+          <p class="text-xl font-bold">{{ usdProfitBalance?.totalProfit ?? 0.000 }} USDT</p>
         </div>
       </div>
     </div>
-
-
   </div>
 
-
-
+  <!-- Insufficient Balance -->
   <div *ngIf="investUsdBalance && investUsdBalance.availableBalance < 10">
-
     <div class="flex flex-row w-full h-24 gap-2 p-8 bg-orange-300 bg-opacity-10 rounded-2xl">
-      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+      <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
       </svg>
+      <p class="mr-5 text-lg">Insufficient Balance .........</p>
+    </div>
+  </div>
 
+  <!-- Sufficient Balance Options -->
+  <div *ngIf="investUsdBalance && investUsdBalance.availableBalance >= 10">
 
-      <p class="mr-5 text-lg">Insufficient Balance ......... </p>
+    <!-- No Plans Active -->
+    <div *ngIf="plansDetails?.length === null" class="mt-3">
+      <ng-container *ngTemplateOutlet="activateTemplate; context: { isButton: true }"></ng-container>
     </div>
 
-  </div>
-
-<div *ngIf="investUsdBalance && investUsdBalance.availableBalance >= 10">
-
-  <div *ngIf="plansDetails?.length === null" class="mt-3">
-
-    <button (click)="invest()" class="w-full mt-5">
-      <label class="flex items-center cursor-pointer">
-        <!-- Switch -->
-        <div class="relative">
-          <input type="checkbox" class="sr-only" [(ngModel)]="isPlanActive" (change)="invest()" />
-          <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
-          <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-        </div>
-
-        <!-- Text and Icon -->
-        <div class="flex items-center ml-4 p-4 rounded-2xl bg-orange-400 bg-opacity-30 w-full h-24 gap-2">
+    <!-- Plan Running -->
+    <div *ngIf="hasRunning" class="mt-5">
+      <div class="flex flex-row justify-between items-center w-full h-24 gap-2 p-8 bg-orange-300 bg-opacity-10 rounded-2xl">
+        <div class="flex items-center gap-3">
           <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
           </svg>
-          <p class="text-lg">Activate Plan</p>
-        </div>
-      </label>
-      </button>
-
-  </div>
-
-
-      <div *ngIf="hasRunning" class="mt-5">
-        <div class="flex flex-row justify-between items-center w-full h-24 gap-2 p-8 bg-orange-300 bg-opacity-10 rounded-2xl">
-          <!-- Left Side: Icon + Text -->
-          <div class="flex items-center gap-3">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
-            </svg>
-            <p class="text-lg"> Activated .........</p>
-          </div>
-
-          <!-- Right Side: Toggle Switch -->
-          <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" [(ngModel)]="isPlanActive" class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-400 transition-colors"></div>
-            <div
-              class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-md transform peer-checked:translate-x-full transition-transform">
-            </div>
-          </label>
+          <p class="text-lg"> Activated .........</p>
         </div>
 
-
-      </div>
-
-
-      <div *ngIf="!hasRunning" class="mt-4">
-        <label class="flex items-center cursor-pointer">
-          <!-- Switch -->
-          <div class="relative">
-            <input type="checkbox" class="sr-only" [(ngModel)]="isPlanActive" (change)="invest()" />
-            <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
-            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-          </div>
-
-          <!-- Text and Icon -->
-          <div class="flex items-center ml-4 p-4 rounded-3xl bg-orange-400 bg-opacity-30 w-full h-24 gap-2">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
-            </svg>
-            <p class="text-lg">Activate Plan</p>
-          </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" [(ngModel)]="isPlanActive" class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-400 transition-colors"></div>
+          <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-md transform peer-checked:translate-x-full transition-transform"></div>
         </label>
-
       </div>
+    </div>
 
-
- </div>
-
-
-
-
- <div class="mt-5">
-
-  <div class="">
-    <p class="text-xl font-bold">Recent Actvivities</p>
-  </div>
-
-
-
-  <div *ngFor="let item of plansDetails">
-
-  <div class="flex flex-row w-full h-20 gap-2 mt-5 bg-white rounded-s-2xl">
-    <svg class="w-6 h-6 m-6 text-green-500 dark:text-orange" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 14-4-4m4 4 4-4"/>
-    </svg>
-
-     <div class="flex flex-col gap-0 mt-3">
-      <p class="text-sm text-black">{{item.maturityDate.substring(0,16)}}</p>
-      <p class="text-green-700 text-md">{{item.status}}</p>
-     </div>
-
-
-     <p class="pl-20 mt-8 text-sm text-green-700">+ {{item.amount * 0.025}} USDT</p>
-
+    <!-- No Plan Running -->
+    <div *ngIf="!hasRunning" class="mt-4">
+      <ng-container *ngTemplateOutlet="activateTemplate; context: { isButton: false }"></ng-container>
+    </div>
 
   </div>
 
-</div>
+  <!-- Recent Activities -->
+  <div class="mt-5">
+    <div>
+      <p class="text-xl font-bold">Recent Activities</p>
+    </div>
 
-</div>
+    <div *ngFor="let item of plansDetails">
+      <div class="flex flex-row w-full h-20 gap-2 mt-5 bg-white rounded-s-2xl">
+        <svg class="w-6 h-6 m-6 text-green-500 dark:text-orange" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 19V5m0 14-4-4m4 4 4-4"/>
+        </svg>
+        <div class="flex flex-col gap-0 mt-3">
+          <p class="text-sm text-black">{{item.maturityDate.substring(0, 16)}}</p>
+          <p class="text-green-700 text-md">{{item.status}}</p>
+        </div>
+        <p class="pl-20 mt-8 text-sm text-green-700">+ {{item.amount * 0.025}} USDT</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- Reusable Toggle Template -->
+  <ng-template #activateTemplate let-isButton="isButton">
+    <button *ngIf="isButton" (click)="invest()" class="w-full mt-5">
+      <label class="flex items-center cursor-pointer">
+        <ng-container *ngTemplateOutlet="toggleSwitch"></ng-container>
+      </label>
+    </button>
+    <label *ngIf="!isButton" class="flex items-center cursor-pointer">
+      <ng-container *ngTemplateOutlet="toggleSwitch"></ng-container>
+    </label>
+  </ng-template>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <ng-template #toggleSwitch>
+    <!-- Switch -->
+    <div class="relative">
+      <input type="checkbox" class="sr-only" [(ngModel)]="isPlanActive" (change)="invest()" />
+      <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+      <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+    </div>
+    <!-- Text & Icon -->
+    <div class="flex items-center ml-4 p-4 rounded-2xl bg-orange-400 bg-opacity-30 w-full h-24 gap-2">
+      <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+      </svg>
+      <p class="text-lg">Activate Plan</p>
+    </div>
+  </ng-template>
 
 </div>
