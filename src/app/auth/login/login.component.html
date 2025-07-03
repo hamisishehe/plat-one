@@ -1,137 +1,117 @@
-<div class="min-h-screen p-4 text-white bg-gradient-to-b from-purple-800 to-indigo-900">
+<div class="min-h-screen bg-[#1e2a38] text-white flex flex-col items-center justify-center px-4 relative">
+  <!-- Language Toggle -->
+  <div class="absolute flex items-center gap-2 text-sm top-4 right-4">
+    <button class="flex items-center px-3 py-1 rounded-full bg-black/20">
+      🌐 English
+    </button>
+    <button class="p-2 text-black bg-orange-400 rounded-full">
+      🎧
+    </button>
+  </div>
 
+  <!-- Logo -->
+  <div class="mb-6">
+    <img src="assets/logo.png" alt="Logo" class="w-16 h-16 rounded-full" />
+  </div>
 
-  <!-- Fixed Social Media Icons -->
-<div class="fixed left-2 top-1/3 z-50 flex flex-col items-center space-y-4">
-  <!-- Facebook -->
-  <a href="#" target="_blank" class="text-white hover:text-blue-500 transition duration-300">
-    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0022 12z" />
-    </svg>
-  </a>
+  <!-- Register Tabs -->
+  <div class="flex mb-6 space-x-6 text-gray-400">
+    <button class="pb-1 font-semibold text-white border-b-2 border-white">Login by Email</button>
+  </div>
 
-  <!-- Twitter -->
-  <a href="#" target="_blank" class="text-white hover:text-blue-400 transition duration-300">
-    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.4.36a9.07 9.07 0 01-2.88 1.1A4.52 4.52 0 0016.15 0c-2.52 0-4.58 2.05-4.58 4.58 0 .36.04.72.12 1.06A12.86 12.86 0 013 1.9a4.6 4.6 0 00-.62 2.3c0 1.58.8 2.98 2 3.8A4.52 4.52 0 012 7.4v.06c0 2.2 1.55 4.04 3.6 4.45a4.7 4.7 0 01-2.06.08c.58 1.82 2.26 3.15 4.24 3.2A9.1 9.1 0 012 19.54a12.79 12.79 0 006.95 2.04c8.34 0 12.9-6.9 12.9-12.9 0-.2 0-.4-.01-.59A9.17 9.17 0 0023 3z" />
-    </svg>
-  </a>
-
- <!-- Telegram -->
-<a href="https://t.me/cryptowealthsolution" target="_blank" class="text-white hover:text-blue-400 transition duration-300">
-  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M12 0C5.4 0 0 5.4 0 12c0 5.3 3.4 9.8 8.1 11.3.6.1.8-.3.8-.6v-2.3c-3.3.7-4-1.6-4-1.6-.6-1.5-1.5-1.9-1.5-1.9-1.2-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.2 2 3.1 1.4 3.9 1 .1-.9.5-1.4.9-1.7-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.3 1-.3 2-.5 3.1-.5s2.1.2 3.1.5c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.3 0 4.6-2.7 5.6-5.3 5.9.5.4 1 .9 1 .7v2.9c0 .3.2.7.8.6C20.6 21.8 24 17.3 24 12c0-6.6-5.4-12-12-12z"/>
-  </svg>
-</a>
-
-</div>
+  <!-- Form -->
+  <form class="w-full max-w-xs space-y-4"  (ngSubmit)="login()" #Loginform="ngForm">
 
 
 
-  <!-- MetaXchange Header -->
-  <div class="mt-6 text-center">
+    <!-- Email -->
+    <div>
+      <label class="block mb-1 text-sm">E-mail</label>
+      <div class="flex items-center py-2 border-b border-gray-300">
+        <span class="mr-2 text-gray-400">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="m3.62 6.389 8.396 6.724 8.638-6.572-7.69-4.29a1.975 1.975 0 0 0-1.928 0L3.62 6.39Z"/>
+            <path d="m22 8.053-8.784 6.683a1.978 1.978 0 0 1-2.44-.031L2.02 7.693a1.091 1.091 0 0 0-.019.199v11.065C2 20.637 3.343 22 5 22h14c1.657 0 3-1.362 3-3.043V8.053Z"/>
+          </svg>
 
-    <div class="p-4 mt-4 bg-white bg-opacity-10 rounded-xl">
-       <img src="cwlogo.png" alt="" srcset="">
+        </span>
+        <input type="email" placeholder="E-mail"
+        [(ngModel)]="email"
+        name="email"
+        required
+        #validateemail="ngModel"
+               class="w-full text-white placeholder-gray-400 bg-transparent border-r-8 rounded-lg focus:outline-none" />
+      </div>
+
+      <div
+      *ngIf="validateemail.invalid && validateemail.touched"
+      class="text-sm text-red-500"
+    >
+      <small *ngIf="validateemail.errors?.['required']">Email is required.</small>
+      <small *ngIf="validateemail.errors?.['email']">Please enter a valid email address.</small>
     </div>
-  </div>
-
-  <!-- Login Card -->
-  <div class="w-11/12 max-w-md p-6 mx-auto mt-8 bg-transparent shadow-lg bg-opacity-20 rounded-2xl">
-    <h2 class="text-xl font-semibold text-center">Welcome Back</h2>
-    <p class="text-sm text-center text-gray-300">Sign in to continue</p>
-
-    <div
-    class="p-4 mb-4 text-sm text-red-500 bg-white rounded-lg dark:bg-gray-800"
-    role="alert"
-    *ngIf="error"
-  >
-    <span class="font-medium">Error !</span> {{ error }}
-  </div>
+    </div>
 
 
-    <form (ngSubmit)="login()" #Loginform="ngForm">
-
-    <div class="mt-4">
-      <!-- Email Input -->
-      <div class="flex items-center p-2 mb-3 bg-indigo-800 rounded-lg bg-opacity-20">
-        <span class="text-gray-300">📧</span>
-        <input
-          type="email"
-          [(ngModel)]="email"
-          name="email"
-          required
-          #validateemail="ngModel"
-          placeholder="Email"
-          class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
-        />
-
-      </div>
-      <div *ngIf="validateemail.invalid && validateemail.touched" class="text-sm text-red-950">
-        <small *ngIf="validateemail.errors?.['required']">Email is required.</small>
-        <small *ngIf="validateemail.errors?.['email']">Please enter a valid email address.</small>
+    <!-- Password -->
+    <div>
+      <label class="block mb-1 text-sm">Password</label>
+      <div class="flex items-center py-2 border-b border-gray-300">
+        <span class="mr-2 text-gray-400">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <input type="password" placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+        required
+        minlength="6"
+        #validatepassword="ngModel"
+               class="w-full text-white placeholder-gray-400 bg-transparent border-r-8 rounded-lg focus:outline-none" />
       </div>
 
-
-      <!-- Password Input -->
-      <div class="flex items-center p-2 mt-2 mb-1 bg-indigo-800 rounded-lg bg-opacity-20">
-        <span class="text-gray-300">🔒</span>
-        <input
-          type="password"
-          [(ngModel)]="password"
-          name="password"
-          required
-          minlength="6"
-          #validatepassword="ngModel"
-          placeholder="Password"
-          class="w-full ml-2 text-black bg-transparent rounded-lg outline-none"
-        />
-
-      </div>
-      <div *ngIf="validatepassword.invalid && validatepassword.touched" class="text-sm text-red-950">
+      <div *ngIf="validatepassword.invalid && validatepassword.touched" class="text-sm text-red-500">
         <small *ngIf="validatepassword.errors?.['required']">Password is required.</small>
         <small *ngIf="validatepassword.errors?.['minlength']">Password must be at least 6 characters long.</small>
       </div>
-
-      <div class="text-sm text-right text-gray-300 cursor-pointer">Forgot Password?</div>
     </div>
 
-    <!-- Sign In Button -->
-    <button
-      [disabled]="!Loginform.valid"
-      class="bg-blue-600 w-full py-2 rounded-lg mt-4"
 
-    >
-    <span *ngIf="loading">
-      <svg
-        class="inline mr-2 w-4 h-4 text-white animate-spin"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          class="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="4"
-        ></circle>
-        <path
-          class="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8v8z"
-        ></path>
-      </svg>
-      Loading...
-    </span>
-    <span *ngIf="!loading">Sign In</span>
+
+    <!-- Sign Up Button -->
+    <button type="submit"
+    [disabled]="!Loginform.valid"
+            class="w-full py-2 mt-4 text-white transition bg-black rounded hover:bg-gray-800">
+            <span *ngIf="loading">
+              <svg
+                class="inline w-4 h-4 mr-2 text-white animate-spin"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8z"
+                ></path>
+              </svg>
+              Loading...
+            </span>
+            <span *ngIf="!loading">Sign In</span>
     </button>
 
-    </form>
-
-    <div class="mt-4 text-sm text-center text-gray-300">
-      Don't have an account? <a href="/auth/register"><span class="text-white cursor-pointer">Sign Up</span></a>
-    </div>
-  </div>
+    <!-- Sign In Link -->
+    <p class="mt-2 text-sm text-center">
+      <a href="/auth/register" class="text-gray-300 underline hover:text-white">Sign Up</a>
+    </p>
+  </form>
 </div>

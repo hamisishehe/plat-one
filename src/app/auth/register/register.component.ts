@@ -14,6 +14,11 @@ import { environment } from '../../../environments/environment';
 export class RegisterComponent {
 
 
+  showPassword = false;
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   countryCode: string = '+61'; // default e.g. Tanzania
 

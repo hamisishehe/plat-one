@@ -13,6 +13,12 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginComponent {
 
+  showPassword = false;
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
   isRegistering = false;
   loading: boolean = false;
   error: string = '';
